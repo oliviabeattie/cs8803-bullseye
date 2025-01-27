@@ -16,6 +16,40 @@ struct ContentView: View {
     @State var score = 0
     @State var round = 1
     
+    struct TextStyle: ViewModifier {
+        func body(content: Content) -> some View {
+            return content
+                .foregroundColor(Color.white)
+                .shadow(color: Color.black, radius: 5, x: 2, y: 2)
+                .font(Font.custom("Arial Rounded MT Bold", size: 18))
+        }
+    }
+    
+    struct ValueStyle: ViewModifier {
+        func body(content: Content) -> some View {
+            return content
+                .foregroundColor(Color.yellow)
+                .shadow(color: Color.black, radius: 5, x: 2, y: 2)
+                .font(Font.custom("Arial Rounded MT Bold", size: 24))
+        }
+    }
+    
+    struct ButtonSmallStyle: ViewModifier {
+        func body(content: Content) -> some View {
+            return content
+                .foregroundColor(Color.black)
+                .font(Font.custom("Arial Rounded MT Bold", size: 12))
+        }
+    }
+    
+    struct ButtonLargeStyle: ViewModifier {
+        func body(content: Content) -> some View {
+            return content
+                .foregroundColor(Color.black)
+                .font(Font.custom("Arial Rounded MT Bold", size: 20))
+        }
+    }
+    
     func calculateScore() -> Int {
         let difference = abs(target - Int(sliderValue.rounded()))
         var points = 100 - difference
@@ -59,32 +93,23 @@ struct ContentView: View {
             
             // target
             HStack {
-                Text("Put the bullseye as close as you can to: ")
-                    .foregroundColor(Color.white)
-                    .shadow(color: Color.black, radius: 5, x: 2, y: 2)
-                    .font(Font.custom("Arial Rounded MT Bold", size: 18))
-                Text("\(target)")
+                Text("Put the bullseye as close as you can to: ").modifier(TextStyle())
+                Text("\(target)").modifier(ValueStyle())
             }
             Spacer()
             
             // slider
             HStack {
-                Text("1")
-                    .foregroundColor(Color.white)
-                    .shadow(color: Color.black, radius: 5, x: 2, y: 2)
-                    .font(Font.custom("Arial Rounded MT Bold", size: 18))
+                Text("1").modifier(TextStyle())
                 Slider(value: $sliderValue, in:1...100)
-                Text("100")
-                    .foregroundColor(Color.white)
-                    .shadow(color: Color.black, radius: 5, x: 2, y: 2)
-                    .font(Font.custom("Arial Rounded MT Bold", size: 18))
+                Text("100").modifier(TextStyle())
             }
             Spacer()
             
             // button
             Button(action: {
                 self.alertVisible = true }) {
-                Text("HIT ME")
+                Text("HIT ME!").modifier(ButtonLargeStyle())
             }.alert(isPresented: $alertVisible) { () ->
                 Alert in
                 return Alert(title: Text(alertTitle()),
@@ -95,30 +120,39 @@ struct ContentView: View {
                                             round += 1
                                             target = Int.random(in: 1...100) })
             }
+            .background(Image("Button"))
             Spacer()
             // score
             HStack {
                 // restart button
                 Button(action: {
                     startOver() }) {
-                    Text("Start Over")
-                }
+                    HStack {
+                        Image("StartOverIcon")
+                        Text("Start Over")
+                    }
+                }.background(Image("Button"))
+                 .modifier(ButtonSmallStyle())
                 Spacer()
                 
                 // score
-                Text("Score:")
-                Text("\(score)")
+                Text("Score:").modifier(TextStyle())
+                Text("\(score)").modifier(ValueStyle())
                 Spacer()
                 
                 // round
-                Text("Round:")
-                Text("\(round)")
+                Text("Round:").modifier(TextStyle())
+                Text("\(round)").modifier(ValueStyle())
                 Spacer()
                 
                 // info button
                 Button(action: {}) {
-                    Text("Info")
-                }
+                    HStack {
+                        Image("InfoIcon")
+                        Text("Info")
+                    }
+                }.background(Image("Button"))
+                 .modifier(ButtonSmallStyle())
             }
         }
         .padding(.bottom, 20)
