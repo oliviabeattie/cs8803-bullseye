@@ -6,6 +6,12 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		4F3295902D486041003DB3AA /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 4F32958F2D486041003DB3AA /* FirebaseAnalytics */; };
+		4F3295922D486041003DB3AA /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 4F3295912D486041003DB3AA /* FirebaseFirestore */; };
+		4F3295942D486041003DB3AA /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 4F3295932D486041003DB3AA /* FirebaseStorage */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		4FCDDC552D46FCF00087C6F8 /* bullseye.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bullseye.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -23,6 +29,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F3295902D486041003DB3AA /* FirebaseAnalytics in Frameworks */,
+				4F3295922D486041003DB3AA /* FirebaseFirestore in Frameworks */,
+				4F3295942D486041003DB3AA /* FirebaseStorage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,6 +74,9 @@
 			);
 			name = bullseye;
 			packageProductDependencies = (
+				4F32958F2D486041003DB3AA /* FirebaseAnalytics */,
+				4F3295912D486041003DB3AA /* FirebaseFirestore */,
+				4F3295932D486041003DB3AA /* FirebaseStorage */,
 			);
 			productName = bullseye;
 			productReference = 4FCDDC552D46FCF00087C6F8 /* bullseye.app */;
@@ -94,6 +106,9 @@
 			);
 			mainGroup = 4FCDDC4C2D46FCF00087C6F8;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				4F32958E2D486041003DB3AA /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 4FCDDC562D46FCF00087C6F8 /* Products */;
 			projectDirPath = "";
@@ -266,6 +281,7 @@
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 15.1;
 				MARKETING_VERSION = 1.0;
+				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = "olivia-beattie.bullseye";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
@@ -304,6 +320,7 @@
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 15.1;
 				MARKETING_VERSION = 1.0;
+				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = "olivia-beattie.bullseye";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
@@ -337,6 +354,35 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		4F32958E2D486041003DB3AA /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.7.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		4F32958F2D486041003DB3AA /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4F32958E2D486041003DB3AA /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		4F3295912D486041003DB3AA /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4F32958E2D486041003DB3AA /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		4F3295932D486041003DB3AA /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4F32958E2D486041003DB3AA /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseStorage;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 4FCDDC4D2D46FCF00087C6F8 /* Project object */;
 }
