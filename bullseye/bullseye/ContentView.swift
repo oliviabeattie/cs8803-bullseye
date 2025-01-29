@@ -6,6 +6,8 @@
 //
 
 import SwiftUI
+import FirebaseAnalytics
+import FirebaseDatabase
 
 struct ContentView: View {
     
@@ -108,7 +110,22 @@ struct ContentView: View {
             
             // button
             Button(action: {
-                self.alertVisible = true }) {
+                self.alertVisible = true
+                Analytics.logEvent("score_submitted", parameters: [
+                    "round": round,
+                    "score": calculateScore(),
+                    "target": target,
+                    "slider_value": Int(sliderValue.rounded())
+                ])
+                // Save data to Firebase Realtime Database
+                let ref = Database.database().reference()
+                let eventData = [
+                    "round": round,
+                    "score": score,
+                    "target": target,
+                    "slider_value": Int(sliderValue.rounded())
+                ]
+                ref.child("events").childByAutoId().setValue(eventData) }) {
                 Text("HIT ME!").modifier(ButtonLargeStyle())
             }.alert(isPresented: $alertVisible) { () ->
                 Alert in
