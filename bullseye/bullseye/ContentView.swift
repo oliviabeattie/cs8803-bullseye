@@ -12,6 +12,7 @@ import FirebaseDatabase
 struct ContentView: View {
     
     @State var alertVisible = false
+    @State var infoVisible = false
     @State var sliderValue = 50.0
     
     @State var target = Int.random(in: 1...100)
@@ -162,14 +163,25 @@ struct ContentView: View {
                 Text("\(round)").modifier(ValueStyle())
                 Spacer()
                 
-                // info button
-                Button(action: {}) {
-                    HStack {
-                        Image("InfoIcon")
-                        Text("Info")
-                    }
-                }.background(Image("Button"))
-                 .modifier(ButtonSmallStyle())
+//                // info button
+//                Button(action: {}) {
+//                    HStack {
+//                        Image("InfoIcon")
+//                        Text("Info")
+//                    }
+//                }.background(Image("Button"))
+//                 .modifier(ButtonSmallStyle())
+                // button
+                Button(action: {
+                    self.infoVisible = true }) {
+                    Text("Info").modifier(ButtonSmallStyle())
+                }.alert(isPresented: $infoVisible) { () ->
+                    Alert in
+                    return Alert(title: Text("Bullseye"),
+                                 message: Text("Get as close to the target as possible!"),
+                                 dismissButton: .default(Text("Okay")) { })
+                }
+                .background(Image("Button"))
             }
         }
         .padding(.bottom, 20)
